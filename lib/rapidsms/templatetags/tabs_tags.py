@@ -40,8 +40,8 @@ class Tab(object):
 
     @property
     def caption_slug(self):
-        slug = self.caption.lower().replace(' ', '-') # convert spaces to '-'
-        slug = re.sub(r'\W', '', slug) # remove any remaining non-word chars
+        slug = self.caption.lower().replace(' ', '-')  # convert spaces to '-'
+        slug = re.sub(r'\W', '', slug)  # remove any remaining non-word chars
         return slug
 
 
@@ -61,7 +61,7 @@ class TabsNode(template.Node):
             return ""
 
         for tab in self.tabs:
-            tab.is_active = tab.url == request.get_full_path()
+            tab.is_active = tab.url == '/' + request.path.split('/')[1] + '/'
         context[self.varname] = self.tabs
         return ""
 

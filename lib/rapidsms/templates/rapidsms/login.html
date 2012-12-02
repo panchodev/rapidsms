@@ -1,35 +1,48 @@
-{% extends "layout-split-2.html" %}
 {% load forms_tags %}
-{% block title %}Login{% endblock %}
-{% block content %}
-
-{% if form.errors %}
-<p>Oops. Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if user.is_authenticated %}
-<p>You're already logged in!</p>
-
-{% else %}
-
-<h1>Please log in to RapidSMS</h1>
-
-
-<form method="post" action="{% url rapidsms-login %}">
-<table>
-<tr>
-    <td>{{ form.username.label_tag }}</td>
-    <td>{{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }}</td>
-    <td>{{ form.password }}</td>
-</tr>
-</table>
-{% csrf_token %}
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
-</form>
-
-{% endif %}
-{% endblock %}
+<!doctype html>
+<html lang="pt-br">
+	<head>
+		<title>RapidSMS - Entrar</title>
+		<link rel="stylesheet" href="{{ STATIC_URL }}v2/bootstrap/css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" href="{{ STATIC_URL }}v2/css/login.css" type="text/css">
+	</head>
+	<body>
+		<h1>RapidSMS</h1>
+		<div id="mainPanel">
+			<div class="well">
+				<h2>Entrar no sistema</h2>
+				<form method="post" action="{% url rapidsms-login %}">
+					<fieldset>
+						<legend>Insira seus dados para continuar</legend>
+						
+						{% if form.errors %}
+						<div class="alert alert-error">
+							<a class="close" data-dismiss="alert">&times;</a>
+							<strong>Atenção:</strong> nome de usuário ou senha incorretos.
+						</div>
+						{% endif %}
+						
+						<label for="login">Nome de usuário</label>
+						<div class="input-prepend">
+						  <span class="add-on"><i class="icon-user"></i></span>
+						  {{ form.username }}
+						</div>
+						<label for="password">Senha</label>
+						<div class="input-prepend">
+						  <span class="add-on"><i class="icon-lock"></i></span>
+						  {{ form.password }}
+						</div>
+						<div class="form-actions ">
+							<button type="submit" class="btn btn-primary">Efetuar login</button>
+						</div>
+					</fieldset>
+					{% csrf_token %}
+					<input type="hidden" name="next" value="{{ next }}" />
+				</form>
+			</div>
+		</div>
+	</body>
+	
+	<script type="text/javascript" src="{{ STATIC_URL }}v2/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}v2/bootstrap/js/bootstrap.min.js"></script>
+</html>

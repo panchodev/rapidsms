@@ -11,7 +11,7 @@ from .models import Message
 class MessageTable(Table):
 
     # this is temporary, until i fix ModelTable!
-    contact = Column()
+    #contact = Column()
     connection = Column()
     direction = Column()
     date = DateColumn(format="H:i d/m/Y")

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
-
-{% block title %}Message Log - {{ block.super }}{% endblock %}
+{% load djtables_tags %}
+{% block title %}Log de mensagens - {{ block.super }}{% endblock %}
 
 {% block stylesheets %}
 {{ block.super }}
@@ -9,7 +9,12 @@
 
 {% block content %}
 <div class="messages module">
-	<h2>Message Log</h2>
-	{{ messages_table.as_html }}
+	<h2>Log de mensagens</h2>
+	<table class="table table-striped">
+	  {% table_cols messages_table %}
+      {% table_head messages_table %}
+      {% table_body messages_table %}
+      {% table_foot messages_table %}
+	</table>
 </div>
 {% endblock %}
