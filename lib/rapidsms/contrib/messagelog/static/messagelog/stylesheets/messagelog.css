@@ -4,10 +4,20 @@
     width: 100%;
 }
 
-    .messages th,
-    .messages td {
-        white-space: nowrap;
-    }
+.messages th,
+.messages td {
+    width: 1%;
+    text-align: left;
+}
 
-    .messages col { width: 1%; }
-    .messages col:first-child { width: auto; }
+.messages th:last-child {
+    width: 50%;
+}
+
+.messages col {
+    width: 1%;
+}
+
+.messages col:first-child {
+    width: auto;
+}

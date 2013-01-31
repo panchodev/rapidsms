@@ -5,16 +5,17 @@
     <title>{% block title %}RapidSMS{% endblock %}</title>
 
     {% block stylesheets %}
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}v2/bootstrap/css/bootstrap.min.css"/>
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}v2/css/custom.css"/>
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}v2/css/layout.css"/>
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}v2/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}v2/css/font-awesome.min.css">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}v2/css/custom.css">
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}v2/css/layout.css">
     {% endblock %}
 </head>
 <body>
 <div class="container" id="container">
     <div class="row" id="top">
         <div class="span2">
-            <h1 id="logo">RapidSMS</h1>
+            <h1 id="logo"><a href="{% url rapidsms-dashboard %}">RapidSMS</a></h1>
         </div>
         <div class="span9 offset1" id="top-nav">
             <div class="navbar">
@@ -51,22 +52,14 @@
         <div id="inner">
             {% block breadcrumbs %}
                 {% if breadcrumbs %}
-                    <ul id="breadcrumbs" class="breadcrumbs">{% for caption, url in breadcrumbs %}
-                        <li>
-                            <a href="{{ url }}">{{ caption }}</a>
-                            {% if not forloop.last %}
-                                <span class="divider">/</span>
-                                </li>
-                            {% endif %}
-                    {% endfor %}
-                    </ul>
+                    <div id="breadcrumb">
+                        <a href="{% url rapidsms-dashboard %}" class="tip-bottom">Início</a>
+                        {% for caption, url in breadcrumbs %}
+                            <a href="{{ url }}"{% if forloop.last %} class="current"{% endif %}>{{ caption }}</a>
+                        {% endfor %}
+                    </div>
                 {% endif %}
             {% endblock %}
-
-            <div id="breadcrumb">
-                <a href="#" class="tip-bottom">Início</a>
-                <a href="#" class="current">Teste</a>
-            </div>
 
             {% block content %}{% endblock %}
         </div>

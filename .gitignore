@@ -17,4 +17,4 @@ _build
 *.egg
 coverage.xml
 .DS_Store
-.idea
+.idea/

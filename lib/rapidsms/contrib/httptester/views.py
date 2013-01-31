@@ -39,7 +39,8 @@ def message_tester(request, backend_name, identity):
     context = {
         "router_available": True,
         "message_log": storage.get_messages(),
-        "message_form": form
+        "message_form": form,
+        "breadcrumbs": (('Teste de mensagens', ''),)
     }
     return render_to_response("httptester/index.html", context,
                               context_instance=RequestContext(request))
